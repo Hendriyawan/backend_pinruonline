@@ -105,7 +105,7 @@ class FasilitasController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'image success upload',
-                'url' => $ip.'/files/upload/images/'.$filename
+                'url' => $ip.'/files/uploads/images/'.$filename
             ], 200);
 
         }
