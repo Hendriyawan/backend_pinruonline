@@ -20,7 +20,7 @@ class CreateSuratsTable extends Migration
             $table->string('validator');
             $table->string('kode_surat');
             $table->date('tanggal_masuk_surat');
-            $table->integer('nomor_surat');
+            $table->string('nomor_surat');
             $table->string('lampiran');
             $table->string('perihal');
             $table->string('nama_kegiatan');
