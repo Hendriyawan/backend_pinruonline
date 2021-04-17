@@ -100,7 +100,7 @@ class FasilitasController extends Controller
         if($request->file('image')){
             $file = $request->file('image');
             $filename = time().'_'.$request->file('image')->getClientOriginalName();
-            $filePath = public_path() . '/files/uploads/images';
+            $filePath = public_path() . '/files/uploads/images/';
             $file->move($filePath, $filename);
             return response()->json([
                 'success' => true,

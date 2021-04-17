@@ -16,7 +16,6 @@ class SuratController extends Controller
      */
     public function createForm(Request $request){
         $validator = Validator::make($request->all(), [
-            'id_user' => 'required',
             'kode_surat' => 'required',
             'tanggal_masuk_surat' => 'required',
             'nomor_surat' => 'required',
@@ -85,13 +84,20 @@ class SuratController extends Controller
         //check apakah login sebagai validator1, validator2
         //lalu kembalikan / munculkan semua surat yang berstatus pending
         } else if($role == 'validator1'){
-            $surat = Surat::where('status_surat', 'pending')->get();
+            //$surat = Surat::where('status_surat', 'pending')->get();
+            return response()->json([
+                'success' => true,
+                'surats' => $surat
+            ], 200);
         } else if($role == 'validator2'){
-            $surat = Surat::where('status_surat', 'validated1')->get();
+            $surat = Surat::where('status_surat', 'validated1')
+            ->orWhere('status_surat', 'validated3')->get();
 
         } else if($role == 'validator3'){
             $surat = Surat::where('status_surat', 'validated2')
-            ->orWhere('update_by', 'validator3')->get();
+            ->orWhere('update_by', 'validator3')
+            ->orWhere('status_surat', 'validated3')->get();
+
         //check apakah login sebagai admin
         //lalu kembalikan / munculkan semua surat yang berstatus validated, approved, rejected
         } else if($role == 'admin'){
